@@ -1,0 +1,103 @@
+/* default: white background, sans serif font */
+body {
+    font-family:Arial,Helvetica;
+    background-color: rgb(0,0,40);
+    color:white;
+    display: block;
+}
+
+/* subsection titles for the parameter area */
+h3 {
+    font-size:14px;
+    color:gainsboro;
+}
+
+/* region to display an error */
+#error { 
+    color:white; 
+    font-weight:bold; 
+    background-color:red; 
+    display:none; 
+}
+
+/* canvas to perform 3d graphcis */
+#drawing_container {
+    position:relative;
+    margin: 0 auto;
+    width: 1200px;
+    height: 900px;
+
+    float:left;
+    border-width:1px;
+    border-style: dashed;
+    border-color: #c3c3c3;
+}
+
+/* container to display editable parameters */
+#param_area {
+    position:relative;
+    float: left;
+    background-color:darkgray;
+    margin: 0 auto;
+    width:300px;
+    height:900px;
+    border-width:1px;
+    border-style: dashed;
+    border-color: #c3c3c3;
+    text-align:center;
+    display: inline-table;
+    -webkit-transition: width 2s;
+    transition: width 2s;
+
+}
+
+/* all input elements get a fixed width */
+input {
+    width:80px;
+}
+
+button {
+    color:white;
+    width:200px;
+    height:50px;
+    background-color:steelblue;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-color: steelblue;
+    border-radius:2px;
+    border-width:5px;
+    margin:5px;
+}
+
+.button {
+    width:200px;
+    height:50px;
+}
+
+.subButton {
+    width:85px;
+    height:50px;
+}
+
+button:focus {
+    border-width:10px;
+
+}
+
+#options {
+    position:absolute;
+    bottom:0;
+}
+
+#color {
+    float:right;
+    margin: 0 auto;
+}
+
+span {
+    margin-right:15px;
+}
+
+.colorrange {
+    float:right;
+}
