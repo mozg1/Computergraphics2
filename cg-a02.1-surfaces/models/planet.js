@@ -26,6 +26,7 @@ define(["three", "shaders"],
                         daytimeTexture: {type: "t", value: null},
                         cloudTexture: {type: "t", value: null},
                         nightTexture:{type: "t", value: null},
+                        explosion:{type: "t", value:null},
                         //topoTexture:{type: "t", value: null},
                         time: {type: "f", value: 1.5}                       
                     }]),
@@ -40,6 +41,7 @@ define(["three", "shaders"],
             // texture can be assigned only when it is loaded completely, e.g. like this =========================LOADER
             var loader = new THREE.TextureLoader(); 
             //http://threejs.org/docs/index.html#Reference/Loaders/MaterialLoader
+
             loader.load("textures/earth_month04.jpg" ,
                 function ( texture ) {
                     material.uniforms.daytimeTexture.value = texture;
@@ -53,6 +55,7 @@ define(["three", "shaders"],
                     console.log( 'An error happened' );
                 }
             );
+
             loader.load("textures/earth_at_night_2048.jpg" , 
                 function ( texture ){
                     material.uniforms.nightTexture.value = texture;
@@ -66,6 +69,7 @@ define(["three", "shaders"],
                     console.log( 'An error happened' );
                 }
             );
+
             loader.load("textures/earth_clouds_2048.jpg" , 
                 function ( texture ){
                 material.uniforms.cloudTexture.value = texture;
@@ -79,6 +83,23 @@ define(["three", "shaders"],
                     console.log( 'An error happened' );
                 }
             );
+
+            loader.load("textures/explosion.png" ,
+                function ( texture ){
+                    material.uniforms.explosion.value = texture;
+                },
+                // Function called when download progresses
+                function ( xhr ) {
+                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+                },
+                // Function called when download errors
+                function ( xhr ) {
+                    console.log( 'An error happened' );
+                }
+            );
+
+            // for dynamically changing textures
+       //     material.map.needsUpdate = true;
 //================================================================================================
 
 //            material.uniforms.daytimeTexture.value   = textureName;

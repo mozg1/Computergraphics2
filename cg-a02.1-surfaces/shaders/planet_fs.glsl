@@ -2,10 +2,12 @@ precision mediump float;
 
 uniform float time;
 varying vec2 vUv;
+varying float noise;
+
 uniform sampler2D daytimeTexture;
 uniform sampler2D nightTexture;
 uniform sampler2D cloudTexture;
-
+uniform sampler2D explosion;
 
 uniform vec3 phongDiffuseMaterial;
 uniform vec3 phongSpecularMaterial;
@@ -36,15 +38,32 @@ vec3 phong(vec3 p, vec3 v, vec3 n, vec3 lightPos, vec3 lightColor) {
     return ambi + diff + spec;
 }
 
+float random( vec3 scale, float seed ) {
+    return fract( sin( dot( gl_FragCoord.xyz + seed, scale ) ) * 43758.5453 + seed ) ;
+}
+
 void main(){
     //bool useOrtho = projectionMatrix[2][3] == 0;
     //vec3 viewDir = useOrtho?vec3(0,0,1):normalize(–ecPosition.xyz);
     //vec3 vColor= phong(ecPosition.xyz,ecNormal,viewDir);
     //gl_FragColor = vec4(vColor, 1.0);                            
-
+/*
     vec2 coord=vUv;
     vec4 RGB = texture2D( daytimeTexture, vUv );
     vec4 clouds = texture2D( cloudTexture, coord+vec2(0.0*time,0.0)); //gucken ob wolken da sind, an koordination
     RGB = 1.0-(1.0-clouds.r)*(1.0-RGB);
     gl_FragColor = vec4(RGB.r,RGB.g,RGB.b,1.0 );
+*/
+    /*
+        Explosion texture
+    */
+    // get a random offset
+        float r = .01 * random( vec3( 12.9898, 78.233, 151.7182 ), 0.0 );
+        // lookup vertically in the texture, using noise and offset
+        // to get the right RGB colour
+        vec2 tPos = vec2( 0, 1.0 - 1.3 * noise + r );
+        vec4 color = texture2D( explosion, tPos );
+
+        gl_FragColor = vec4( color.rgb, 1.0 );
+
 }
