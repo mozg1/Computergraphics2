@@ -23,15 +23,20 @@ define(["three", "shaders"],
                         specularMaterial: {type: 'c', value: new THREE.Color(0.7, 0.7, 0.7)},
                         ambientMaterial: {type: 'c', value: new THREE.Color(0.8, 0.2, 0.2)},
                         shininessMaterial: {type: 'f', value: 16.0},
+
                         daytimeTexture: {type: "t", value: null},
                         cloudTexture: {type: "t", value: null},
                         nightTexture:{type: "t", value: null},
-                        explosion:{type: "t", value:null},
-                        //topoTexture:{type: "t", value: null},
-                        time: {type: "f", value: 1.5}                       
+
+                        cloudsTextureBool:       { type: 'i' , value: $('checkBoxCloudsTexture').is(':checked')},
+                        dayTimeTextureBool:		 { type: 'i' , value: $('checkBoxDayTexture').is(':checked')},
+                        nightTextureBool:		 { type: 'i' , value: $('checkBoxNightTexture').is(':checked')},
+
+                        time: {type: "f", value: 1.5}
                     }]),
                 vertexShader: Shaders.getVertexShader('planet'),
                 fragmentShader: Shaders.getFragmentShader('planet'),
+
                 lights:true
             });
             // implement ShaderMaterial using the code from
@@ -84,19 +89,6 @@ define(["three", "shaders"],
                 }
             );
 
-            loader.load("textures/explosion.png" ,
-                function ( texture ){
-                    material.uniforms.explosion.value = texture;
-                },
-                // Function called when download progresses
-                function ( xhr ) {
-                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-                },
-                // Function called when download errors
-                function ( xhr ) {
-                    console.log( 'An error happened' );
-                }
-            );
 
             // for dynamically changing textures
        //     material.map.needsUpdate = true;

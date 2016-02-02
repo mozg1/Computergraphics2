@@ -78,15 +78,18 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
 
             
             $("#btnNewExplosion").click( (function() {
-            /**    var planet = new Planet();
-                scene.addMesh(planet.getMesh());
+                var explosion = new Explosion();
+                scene.explosionLight();
+                scene.addBufferGeometry(explosion);
+        /**
+                scene.addMesh(explosion.getMesh());
                 var aLight = new THREE.AmbientLight(color);
                 scene.addLight(aLight);
                 var dLight = new THREE.DirectionalLight(color, intensity);
                 dLight.name = "dLight";
                 dLight.position.set(-1, 0, -0.3).normalize();
                 scene.addLight(dLight);
-            */
+         */
             }));
 
 

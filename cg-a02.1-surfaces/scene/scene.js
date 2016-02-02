@@ -22,6 +22,8 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
          */
         var Scene = function(renderer, width, height) {
 
+            var start = Date.now();
+
             // the scope of the object instance basically means the viewport
             var scope = this;
 
@@ -171,6 +173,9 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
                 } else {
                     scope.currentMesh.rotation.x += speed;
                     scope.currentMesh.rotation.y += speed;
+                    var obj = scope.scene.children[ scope.scene.children.length-1 ];
+                    obj.children[0].material.uniforms[ 'time' ].value = .00025 * ( Date.now() - start );
+
                 }
 
             };
@@ -332,7 +337,33 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
                 var pointLightHelper = new THREE.DirectionalLightHelper(dLight);
                 scope.scene.add( pointLightHelper );
 
+            };
+
+            this.explosionLight = function(){
+
+                var color = 0xff0000;
+                var intensity = 1;
+
+                var aLight = new THREE.AmbientLight(color);
+                var dLight = new THREE.DirectionalLight(color, intensity);
+                dLight.name = "dLight";
+                dLight.position.set(-1,0,-0.3).normalize();
+                scope.scene.add(aLight);
+                scope.scene.add(dLight);
+
+                var sphereSize = 100;
+                var pointLightHelper = new THREE.DirectionalLightHelper(dLight);
+                scope.scene.add( pointLightHelper );
+
+            };
+
+
+            /*
+            this.changeTexture = function() {
+                var obj = scope.scene.children[ scope.scene.children.length-1 ];
+                obj.material.uniforms.cloudTexture.value =
             }
+            */
 
         };
 
