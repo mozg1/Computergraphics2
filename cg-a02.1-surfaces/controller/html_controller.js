@@ -109,6 +109,10 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
                 $("#parametric").hide();
                 $("#showMat").hide();
                 $("#showWire").hide();
+
+                $("#freqScale").change( function() {
+                    explosion.changeFreqScale( parseFloat($("#freqScale").attr("value") ) );
+                });
         /**
                 scene.addMesh(explosion.getMesh());
                 var aLight = new THREE.AmbientLight(color);

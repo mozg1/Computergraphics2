@@ -32,7 +32,10 @@ define(["jquery", "three", "shaders"],
                         shininessMaterial: {type: 'f', value: 16.0},
                         explosion:{type: "t", value:null},
                         //topoTexture:{type: "t", value: null},
-                        time: {type: "f", value: 0.0}
+                        freqScale: {type: "f", value: 0.5},
+                        colorScale: {type: "f", value: 1},
+                        time: {type: "f", value: 0.0},
+
                     }]),
                 vertexShader: Shaders.getVertexShader('explosion'),
                 fragmentShader: Shaders.getFragmentShader('explosion'),
@@ -79,6 +82,10 @@ define(["jquery", "three", "shaders"],
             this.getMesh = function() {
                 return this.root;
             };
+
+            this.changeFreqScale = function(val) {
+                material.uniforms['freqScale'].value = val;
+            }
 
 
         }; // constructor
