@@ -2,8 +2,9 @@
 uniform sampler2D explosion;
 varying vec2 vUv;
 varying float noise;
+
+uniform float colorScale; // What does it do?
 /*
-uniform float colorScale;
 uniform float time;
 */
 
