@@ -87,6 +87,23 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
                 $("#showMat").hide();
                 $("#showWire").hide();
 
+                $("#day").change(function() {
+                    planet.changeTexture("day");
+                    console.log(planet.getTextures());
+                });
+
+                $("#night").change( function() {
+                    planet.changeTexture("night");
+                });
+
+                $("#clouds").change( function() {
+                    planet.changeTexture("clouds");
+
+                });
+
+                $("#light").change( function() {
+
+                });
 
                 /**
                 scene.addMesh(planet.getMesh());

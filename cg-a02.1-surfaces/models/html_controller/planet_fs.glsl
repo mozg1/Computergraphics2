@@ -51,19 +51,18 @@ vec3 phong(vec3 p,  vec3 n, vec3 v, vec3 lightDir, vec3 lightColor,vec3 colorClo
     // when ndotl == 1.0 the ambient term should be zero
 	// nacht
 	
-	vec3 ambi = (nightTextureBool == 1)? colorNight : phongAmbientMaterial;
-	
+
 	vec3 diffuseCoeff = (dayTimeTextureBool == 1 )? colorDay : phongDiffuseMaterial;
     // clouds at day?
    if(cloudsTextureBool == 1) {
         diffuseCoeff = (1.0-colorClouds)*diffuseCoeff + colorClouds*vec3(1,1,1);
     }
-	
+		vec3 ambi = (nightTextureBool == 1)? colorNight : phongAmbientMaterial;
+
 	vec3 diff =  diffuseCoeff * directionalLightColor[0] * ndots;
-	
     vec3 spec = phongSpecularMaterial * pow(rdotv, phongShininessMaterial ) * lightColor ;
 
-    return pow(1.0 - ndots,5.0)* ambi + diff + spec;
+    return ambi + diff + spec;
 }
 
 void main() {
@@ -96,7 +95,7 @@ void main() {
     // diffuse contribution
     vec3 diffuseCoeff = (daytimeTextureBool == 1 )? colorDay : phongDiffuseMaterial;
     // clouds at day?
-    if(cloudsTextureBool == 1) {
+    if(cloudsBool == 1) {
         diffuseCoeff = (1.0-colorClouds)*diffuseCoeff + colorClouds*vec3(1,1,1);
     }
     // final diffuse term for daytime

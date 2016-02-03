@@ -4,9 +4,9 @@ varying vec4 ecPosition;
 varying vec3 ecNormal;
 varying vec2 vUv;
 
-varying float noise;
-uniform float time;
-
+varying vec3 vColor;
+varying vec3 fragColor;
+varying vec3 viewDir;
 
 void main() {
     vUv=uv;
@@ -15,15 +15,12 @@ void main() {
     ecPosition = modelViewMatrix * vec4(position, 1.0);
     ecNormal = normalMatrix * normal;
 
-
-
     //perspective or orthogonal projection
     bool useOrtho = projectionMatrix[2][3] < 0.1;
     //different if else construct
     viewDir = useOrtho ? vec3(0, 0, 1) : normalize(-ecPosition.xyz);
 
     gl_Position = projectionMatrix * ecPosition;
-
 
 //    gl_Position = projectionMatrix *modelViewMatrix * vec4(position,1.0);
 }

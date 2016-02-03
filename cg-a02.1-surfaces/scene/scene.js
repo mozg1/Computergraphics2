@@ -171,7 +171,7 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
 
                     //animateOne(this.animateShoulder(speed)).done(this.animateElbow(speed))
                 } else {
-                    scope.currentMesh.rotation.x += speed;
+                //    scope.currentMesh.rotation.x += speed;
                     scope.currentMesh.rotation.y += speed;
                     var obj = scope.scene.children[ scope.scene.children.length-1 ];
                     obj.children[0].material.uniforms[ 'time' ].value = .00025 * ( Date.now() - start );
@@ -323,7 +323,7 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
 
             this.planetLight = function(){
 
-                var color = 0xff0000;
+                var color = new THREE.Color(1,1,1);
                 var intensity = 1;
 
                 var aLight = new THREE.AmbientLight(color);
@@ -332,10 +332,6 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
                 dLight.position.set(-1,0,-0.3).normalize();
                 scope.scene.add(aLight);
                 scope.scene.add(dLight);
-
-                var sphereSize = 100;
-                var pointLightHelper = new THREE.DirectionalLightHelper(dLight);
-                scope.scene.add( pointLightHelper );
 
             };
 
@@ -350,20 +346,19 @@ define(["three", "util", "shaders", "BufferGeometry", "random", "band"],
                 dLight.position.set(-1,0,-0.3).normalize();
                 scope.scene.add(aLight);
                 scope.scene.add(dLight);
-
-                var sphereSize = 100;
+/*
                 var pointLightHelper = new THREE.DirectionalLightHelper(dLight);
                 scope.scene.add( pointLightHelper );
-
+*/
             };
 
 
-            /*
+
             this.changeTexture = function() {
                 var obj = scope.scene.children[ scope.scene.children.length-1 ];
-                obj.material.uniforms.cloudTexture.value =
+                obj.material.uniforms.cloudTextureBool = 1;
             }
-            */
+
 
         };
 

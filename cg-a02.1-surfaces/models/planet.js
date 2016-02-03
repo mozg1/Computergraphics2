@@ -19,18 +19,18 @@ define(["three", "shaders"],
                 uniforms: THREE.UniformsUtils.merge([
                     THREE.UniformsLib['lights'],
                     {
-                        diffuseMaterial: {type: 'c', value: new THREE.Color(1, 0, 0)},
+                        diffuseMaterial: {type: 'c', value: new THREE.Color(1, 1, 1)},
                         specularMaterial: {type: 'c', value: new THREE.Color(0.7, 0.7, 0.7)},
                         ambientMaterial: {type: 'c', value: new THREE.Color(0.8, 0.2, 0.2)},
-                        shininessMaterial: {type: 'f', value: 6.0},
+                        shininessMaterial: {type: 'f', value: 16.0},
 
                         daytimeTexture: {type: "t", value: null},
-                        cloudTexture: {type: "t", value: null},
                         nightTexture:{type: "t", value: null},
+                        cloudTexture: {type: "t", value: null},
 
-                        cloudsTextureBool:       { type: 'i' , value: $('checkBoxCloudsTexture').is(':checked')},
-                        dayTimeTextureBool:		 { type: 'i' , value: $('checkBoxDayTexture').is(':checked')},
-                        nightTextureBool:		 { type: 'i' , value: $('checkBoxNightTexture').is(':checked')},
+                        dayBool:		 { type: 'i' , value: $('day').is(':checked')},
+                        nightBool:		 { type: 'i' , value: $('night').is(':checked')},
+                        cloudsBool:       { type: 'i' , value: $('clouds').is(':checked')},
 
                         time: {type: "f", value: 1.5}
                     }]),
@@ -45,49 +45,22 @@ define(["three", "shaders"],
             // hint:
             // texture can be assigned only when it is loaded completely, e.g. like this =========================LOADER
             var loader = new THREE.TextureLoader(); 
-            //http://threejs.org/docs/index.html#Reference/Loaders/MaterialLoader
+            // http://threejs.org/docs/index.html#Reference/Loaders/MaterialLoader
 
             loader.load("textures/earth_month04.jpg" ,
                 function ( texture ) {
                     material.uniforms.daytimeTexture.value = texture;
-                },
-                // Function called when download progresses
-                function ( xhr ) {
-                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-                },
-                // Function called when download errors
-                function ( xhr ) {
-                    console.log( 'An error happened' );
-                }
-            );
+                });
 
             loader.load("textures/earth_at_night_2048.jpg" , 
                 function ( texture ){
                     material.uniforms.nightTexture.value = texture;
-                },
-                // Function called when download progresses
-                function ( xhr ) {
-                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-                },
-                // Function called when download errors
-                function ( xhr ) {
-                    console.log( 'An error happened' );
-                }
-            );
+                });
 
             loader.load("textures/earth_clouds_2048.jpg" , 
                 function ( texture ){
-                material.uniforms.cloudTexture.value = texture;
-            },
-                // Function called when download progresses
-                function ( xhr ) {
-                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-                },
-                // Function called when download errors
-                function ( xhr ) {
-                    console.log( 'An error happened' );
-                }
-            );
+                    material.uniforms.cloudTexture.value = texture;
+                });
 
 
             // for dynamically changing textures
@@ -101,13 +74,36 @@ define(["three", "shaders"],
 
             scope.root.add(scope.mesh);
 
-
-
-
             this.getMesh = function() {
                 return this.root;
             };
 
+            this.changeTexture = function(texture){
+                if(texture=='day') {
+                    if (material.uniforms.dayBool.value == 0) {
+                        material.uniforms.dayBool.value = 1;
+                    } else {
+                        material.uniforms.dayBool.value = 0;
+                    }
+                } else if(texture=='night') {
+                    if (material.uniforms.nightBool.value == 0){
+                        material.uniforms.nightBool.value = 1;
+                    } else {
+                        material.uniforms.nightBool.value = 0;
+                    }
+                } else if(texture=='clouds') {
+                    if (material.uniforms.cloudsBool.value == 0) {
+                        material.uniforms.cloudsBool.value = 1;
+                    } else {
+                        material.uniforms.cloudsBool.value = 0;
+                    }
+                }
+                material.needsUpdate = true;
+            };
+
+            this.getTextures = function(){
+                return material.uniforms.dayBool.value;
+            };
 
         }; // constructor
 

@@ -30,9 +30,9 @@ define(["three", "shaders"],
 							cloudTexture: 			 { type: 't' , value: null },
 							nightTexture: 			 { type: 't' , value: null },
 							
-							cloudsTextureBool:       { type: 'i' , value: $('checkBoxCloudsTexture').is('checked')},
-							dayTimeTextureBool:		 { type: 'i' , value: $('checkBoxDayTexture').is('checked')},
-							nightTextureBool:		 { type: 'i' , value: $('checkBoxNightTexture').is('checked')}
+							cloudsBool:       { type: 'i' , value: $('checkBoxCloudsTexture').is('checked')},
+							dayBool:		 { type: 'i' , value: $('checkBoxDayTexture').is('checked')},
+							nightBool:		 { type: 'i' , value: $('checkBoxNightTexture').is('checked')}
 						}
 					]
                 ),
@@ -70,17 +70,17 @@ define(["three", "shaders"],
 									} 
 								  }
 									break;
-					case 'clouds': {if (material.uniforms.cloudsTextureBool.value == 0){
-										material.uniforms.cloudsTextureBool.value = 1;
+					case 'clouds': {if (material.uniforms.cloudsBool.value == 0){
+										material.uniforms.cloudsBool.value = 1;
 									}else {
-										material.uniforms.cloudsTextureBool.value = 0;
+										material.uniforms.cloudsBool.value = 0;
 									} 
 								  }
 									break;
-					case 'night' :  {if (material.uniforms.nightTextureBool.value == 0){
-										 material.uniforms.nightTextureBool.value = 1;
+					case 'night' :  {if (material.uniforms.nightBool.value == 0){
+										 material.uniforms.nightBool.value = 1;
 									}else {
-										 material.uniforms.nightTextureBool.value = 0;
+										 material.uniforms.nightBool.value = 0;
 									} 
 								  }
 									break;
