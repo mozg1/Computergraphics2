@@ -1,8 +1,11 @@
 precision mediump float;
 
-uniform float time;
+varying vec4 ecPosition;
+varying vec3 ecNormal;
 varying vec2 vUv;
-varying float noise;
+varying vec3 viewDir;
+
+varying vec3 fragColor;
 
 uniform sampler2D daytimeTexture;
 uniform sampler2D nightTexture;
@@ -23,8 +26,7 @@ uniform vec3 directionalLightColor[ MAX_DIR_LIGHTS ];
 //uniform vec3 pointLightPosition[MAX_POINT_LIGHTS];
 //uniform float pointLightDistance[MAX_POINT_LIGHTS];
 
-varying vec4 ecPosition;
-varying vec3 ecNormal;
+
 /*
 vec3 phong(vec3 p, vec3 v, vec3 n, vec3 lightPos, vec3 lightColor) {
     if(dot(v,n) < 0.0) return vec3(0,0,0);

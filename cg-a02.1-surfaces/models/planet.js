@@ -22,7 +22,7 @@ define(["three", "shaders"],
                         diffuseMaterial: {type: 'c', value: new THREE.Color(1, 0, 0)},
                         specularMaterial: {type: 'c', value: new THREE.Color(0.7, 0.7, 0.7)},
                         ambientMaterial: {type: 'c', value: new THREE.Color(0.8, 0.2, 0.2)},
-                        shininessMaterial: {type: 'f', value: 16.0},
+                        shininessMaterial: {type: 'f', value: 6.0},
 
                         daytimeTexture: {type: "t", value: null},
                         cloudTexture: {type: "t", value: null},

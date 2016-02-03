@@ -30,14 +30,23 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
             $("#showMat").hide();
             $("#showWire").hide();
 
+            $("#exp").hide();
+            $("#planet").hide();
+
+
             $("#btnRandom").click( (function() {
                 $("#random").show();
                 $("#band").hide();
                 $("#parametric").hide();
+                $("#exp").hide();
+                $("#planet").hide();
             }));
 
             $("#btnBand").click( (function() {
                 $("#random").hide();
+                $("#exp").hide();
+                $("#planet").hide();
+
                 $("#band").show();
                 $("#parametric").hide();
                 $("#showMat").hide();
@@ -46,7 +55,11 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
 
             $("#btnParametric").click( (function() {
                 $("#random").hide();
-                $("#band").hide();
+                $("#band").hide()
+
+                $("#exp").hide();
+                $("#planet").hide();
+
                 $("#parametric").show();
                 $("#showMat").show();
                 $("#showWire").show();
@@ -58,6 +71,9 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
                 $("#parametric").hide();
                 $("#showMat").show();
                 $("#showWire").show();
+
+                $("#exp").hide();
+                $("#planet").hide();
             }));
 //======================================================================== Ex3
 
@@ -65,7 +81,14 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
                 var planet = new Planet();
                 scene.planetLight();
                 scene.addBufferGeometry(planet);
-        /**
+                $("#exp").hide();
+                $("#planet").show();
+                $("#parametric").hide();
+                $("#showMat").hide();
+                $("#showWire").hide();
+
+
+                /**
                 scene.addMesh(planet.getMesh());
                 var aLight = new THREE.AmbientLight(color);
                 scene.addLight(aLight);
@@ -81,6 +104,11 @@ define(["jquery", "BufferGeometry", "random", "band", "parametric", "robot", "pl
                 var explosion = new Explosion();
                 scene.explosionLight();
                 scene.addBufferGeometry(explosion);
+                $("#exp").show();
+                $("#planet").hide();
+                $("#parametric").hide();
+                $("#showMat").hide();
+                $("#showWire").hide();
         /**
                 scene.addMesh(explosion.getMesh());
                 var aLight = new THREE.AmbientLight(color);

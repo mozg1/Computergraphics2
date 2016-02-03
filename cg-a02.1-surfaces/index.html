@@ -35,22 +35,38 @@
         <button id="btnParametric" class="button" type="button"   >Parametric surfaces</button>
         <button id="btnRobot" class="button" type="button"   >Robot  [°A°]</button>
 <!-- Exercise 3 ===============================================================================================-->
+        <br>
+        <table id="ex3">
+
         <button id="btnNewPlanet" class="subButton" type="button">Planet</button>
         <button id="btnNewExplosion" class="subButton" type="button">Explosion</button>
-<!--/Exercise 3 ===============================================================================================-->
+        <div id="planet">
+           Day: <input type="checkbox" id="day" name="Day">
+           Night: <input type="checkbox" id="night" name="Night">
+           Clouds: <input type="checkbox" id="clouds" name="Clouds">
+           Light: <input type="checkbox" id="light" name="Light">
+        </div>
+        <div id="exp">
+            Freq. Scale: <input type="number" id="freqScale">
+            Col. Scale: <input type="number" id="colScale">
+            Weight: <input type="number" id="weight">
+        </div>
+        </table>
+        <!--/Exercise 3 ===============================================================================================-->
 
 
-        <h2>Animate:<input type="checkbox" id="animate" value="Animate" />
+        <h2>Rotate:<input type="checkbox" id="animate" value="Animate" />
             <input type="range" id="speed" value="50">
+            Extra-anim: <input type="checkbox" id="extra" value="Extra-anim" />
         </h2>
-
+<!--
         <ul id="rotation">
             <li id="left" class="arrow"></li>
             <li id="right" class="arrow"></li>
             <li id="up" class="arrow"></li>
             <li id="down" class="arrow"></li>
         </ul>
-
+-->
         <!-- add more here... -->
         <h3>Selected Object:</h3>
         <table id="random">
